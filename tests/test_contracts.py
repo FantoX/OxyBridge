@@ -102,11 +102,11 @@ def test_request_transport_pins_resolved_dns(fake_http, monkeypatch):
 
 def test_postgres_parameters_read_only_and_row_limits():
     credential = {
-        "host": "127.0.0.1",
-        "port": 55433,
-        "database": "oxybridge_test",
-        "username": "postgres",
-        "password": "oxybridge-test",
+        "host": engine.url.host,
+        "port": engine.url.port or 5432,
+        "database": engine.url.database,
+        "username": engine.url.username,
+        "password": engine.url.password,
         "sslmode": "disable",
     }
     result = postgres_query(
