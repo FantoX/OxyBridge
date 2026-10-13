@@ -2,6 +2,8 @@
 !.env.example
 !.dockerignore
 node_modules
+build
+dist
 web/node_modules
 web/dist
 web/test-results

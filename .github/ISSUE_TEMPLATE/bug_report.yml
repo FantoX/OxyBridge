@@ -1,0 +1,26 @@
+name: Bug report
+description: Report a reproducible application problem.
+title: "Bug: "
+body:
+  - type: markdown
+    attributes:
+      value: "Use synthetic examples and remove credentials, private URLs, and personal data. Report sensitive security issues privately through the Security tab."
+  - type: input
+    id: version
+    attributes:
+      label: Application version or commit
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include expected and actual behavior with a minimal redacted example.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Runtime and browser
+      description: Include operating system, browser, deployment mode, and relevant redacted errors.

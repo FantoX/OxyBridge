@@ -1,5 +1,9 @@
 # Security
 
+## Supported releases and private reports
+
+Security fixes target the latest published `0.x` release and the current main branch. Older releases have no separate support guarantee; review release notes and upgrade to the latest compatible release. Use [Report a vulnerability](https://github.com/FantoX/OxyBridge/security/advisories/new) to report privately. If private reporting is unavailable, contact the repository owner without posting exploit details or sensitive data in a public issue.
+
 OxyBridge stores integration credentials, accepts webhook traffic, performs outbound requests, and executes parameterized database operations. Review deployment permissions and integration scopes before exposing an instance.
 
 ## Reviewed boundaries
