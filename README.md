@@ -195,4 +195,4 @@ External effects use **at-least-once delivery**. An interruption after an extern
 | Design decisions and execution semantics                | [`docs/architecture.md`](docs/architecture.md)                                                 |
 | Tests and release evidence                              | [`tests/`](tests/), [`web/tests/`](web/tests/), [`docs/verification.md`](docs/verification.md) |
 
-<p align="center">Crafted by FantoX · Built for connections you can understand.</p>
+<p align="center">Build by FantoX · Built for connections you can understand.</p>
