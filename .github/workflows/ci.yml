@@ -44,7 +44,7 @@ jobs:
       - run: python -m pip install -r requirements-dev.txt
       - run: npm ci --prefix web
       - run: ruff check oxybridge tests scripts
-      - run: pytest
+      - run: python -m pytest
       - run: npm run lint --prefix web
       - run: npm test --prefix web
       - run: npm run build --prefix web
