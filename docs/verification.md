@@ -6,11 +6,14 @@ Review date: **October 13, 2026**. The supplied roadmap is a build specification
 
 | Check | Evidence |
 | --- | --- |
+| GitHub Actions | [Passing validation run](https://github.com/FantoX/OxyBridge/actions/runs/38378227528) for application commit `0c1e76c`: Linux, Python 3.12, Node.js 24, disposable PostgreSQL 18, full backend/frontend/browser checks and dependency scans. |
 | Backend | **78 passed**. Graph, expression, state, HTTP/SQL contracts, auth, tenant isolation, CSRF/RBAC, secrets, scheduling, retries, outbox, recovery, idempotency, concurrency, retention, and migration tests. Added configuration/SMTP/header, hostile JSON Schema, and execution-stream connection/thread regressions in this review. |
 | Frontend | Five editor state tests; ESLint, strict TypeScript, and production Vite build. |
-| Browser compatibility | **24 passed** across Chromium, Firefox, and WebKit. Each includes a real canvas/edit/publish/run/inspect flow, management/theme checks, and all major screens at 320, 360, 390, 768, 1024, and 1440px. Test sessions are reused per worker so the suite respects login throttling. |
+| Browser compatibility | **24 passed** in Linux CI across Chromium, Firefox, and WebKit. Each includes a real canvas/edit/publish/run/inspect flow, management/theme checks, and all major screens at 320, 360, 390, 768, 1024, and 1440px. Test sessions are reused per worker so the suite respects login throttling. |
 | Responsive interactions | Navigation drawer, editor node selection/inspector/palette, publication button geometry, execution detail, and connection dialogs. Tests reject page overflow and uncaught/CSP errors. Screenshots use an isolated local instance and demo records. |
+| Built UI compatibility | An additional **24 passed** on Windows against the production frontend served from the rebuilt Linux container. The same three engines and screen widths passed with the real CSP enabled. |
 | Portable runtime | Multi-stage image built on Linux; clean local PostgreSQL migrated to 0002; ASGI served the built frontend and API on one origin; repeated migrations passed. App/database readiness and continuous service startup verified. |
+| Hosted release | Readiness, authentication, frontend security headers, six concurrent execution snapshots, and two real Chromium edit/publish/run/inspect and management/mobile flows passed after the final application update. |
 | Continuous processing | `scripts/check_runtime.py` passed a signed webhook/replay check, a 12-second durable wait resumed without browser advancement, and a minute-level cron run completed through continuous services. Verification schedules were removed and workflows archived afterward. |
 | Dependencies | Runtime Python and frontend package scans found no known vulnerabilities at review time. This is time-bounded evidence, not a guarantee of future advisories. |
 | Security | Source review and regression tests are documented in [SECURITY.md](../SECURITY.md). Private configuration is excluded from Git and container context. |

@@ -163,6 +163,8 @@ The Order Fulfillment template includes HTTP, database storage, and callback ste
 
 The review covers authentication, CSRF/CORS, tenant isolation, roles and API scopes, encrypted credentials, secret redaction, webhook replay, outbound requests, SQL, security headers, dependency scans, and container permissions. See [the security review](SECURITY.md) and [requirement-by-requirement verification](docs/verification.md) for evidence and limits.
 
+**Verified October 13, 2026:** 78 backend tests, 5 frontend state tests, and 24 browser checks across Chromium, Firefox, and WebKit passed in the [validation pipeline](https://github.com/FantoX/OxyBridge/actions/runs/38378227528), alongside lint, production builds, and dependency scans. Responsive checks cover widths from 320px to 1440px.
+
 Tests use a disposable database ending in `_test`. They recreate application tables and must never target an instance containing business data.
 
 ```powershell

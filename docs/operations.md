@@ -21,6 +21,21 @@ docker compose logs --tail 100 app dispatcher scheduler
 
 Configuration is described in [configuration.md](configuration.md). No production secrets are included in the repository. Development and production must use separate databases and keys; copying production configuration into local development makes local edits affect production.
 
+## Static frontend and repository deployments
+
+If your host builds the React frontend separately from the ASGI entry point, persist these rules in its project configuration. Automatic repository deployments must retain the same routes and security headers as a manual release.
+
+| Request | Destination |
+| --- | --- |
+| `/api/v1/*`, `/hooks/*`, `/health/*`, `/metrics`, `/docs`, `/redoc`, `/openapi.json` | ASGI entry point, preserving the original request path, method, body, cookies, and query. |
+| `/`, `/login`, `/reset-password`, `/workflows/*`, `/runs/*`, `/connections`, `/schedules`, `/templates`, `/failed`, `/audit`, `/settings` | Built `index.html`. |
+| Existing frontend assets | Their static files. |
+| Unknown API/private paths and missing assets | A 404 response. |
+
+Apply the frontend CSP, frame denial, nosniff, referrer/permissions policies, and HTTPS HSTS in the static host. The ASGI application supplies its API headers. Keep API docs compatible with their external UI assets. Store instance credentials in the host's environment settings; never put them into route configuration or repository files.
+
+After every release, verify that `/health/ready` and `/api/v1/auth/status` return JSON, page deep links return the frontend, and unauthenticated monitoring/private APIs remain protected. A successful static build alone does not prove the API is reachable.
+
 ## First sign-in and integrations
 
 On an empty migrated database, use the setup token to create the owner. Afterward, setup returns a conflict and cannot create another owner. Change development seed credentials through Settings before exposing an instance. Add members with the least necessary role.
