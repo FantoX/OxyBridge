@@ -6,7 +6,7 @@ Review date: **October 13, 2026**. The supplied roadmap is a build specification
 
 | Check | Evidence |
 | --- | --- |
-| Backend | **77 passed**. Graph, expression, state, HTTP/SQL contracts, auth, tenant isolation, CSRF/RBAC, secrets, scheduling, retries, outbox, recovery, idempotency, concurrency, retention, and migration tests. Added configuration/SMTP/header and hostile JSON Schema regressions in this review. |
+| Backend | **78 passed**. Graph, expression, state, HTTP/SQL contracts, auth, tenant isolation, CSRF/RBAC, secrets, scheduling, retries, outbox, recovery, idempotency, concurrency, retention, and migration tests. Added configuration/SMTP/header, hostile JSON Schema, and execution-stream connection/thread regressions in this review. |
 | Frontend | Five editor state tests; ESLint, strict TypeScript, and production Vite build. |
 | Browser compatibility | **24 passed** across Chromium, Firefox, and WebKit. Each includes a real canvas/edit/publish/run/inspect flow, management/theme checks, and all major screens at 320, 360, 390, 768, 1024, and 1440px. Test sessions are reused per worker so the suite respects login throttling. |
 | Responsive interactions | Navigation drawer, editor node selection/inspector/palette, publication button geometry, execution detail, and connection dialogs. Tests reject page overflow and uncaught/CSP errors. Screenshots use an isolated local instance and demo records. |

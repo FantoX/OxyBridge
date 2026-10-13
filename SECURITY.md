@@ -29,6 +29,7 @@ OxyBridge stores integration credentials, accepts webhook traffic, performs outb
 - Invalid environment names fail startup; staging applies the same HTTPS/cookie protections as production.
 - The portable image and Compose files apply non-root and runtime filesystem/capability restrictions.
 - Small-screen editor/search controls retain accessible names when their visible text is hidden.
+- Execution streams release authentication/read connections before streaming and perform snapshot reads off the API event loop to avoid blocking unrelated requests.
 
 ## Operator responsibilities
 
