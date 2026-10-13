@@ -30,12 +30,12 @@
 
 An order arrives through a webhook. OxyBridge validates its payload, selects a branch, maps the fields, calls an API, writes a result, and sends a callback. If a dependency fails, the retry and its outcome stay visible in the same execution history.
 
-| Build visually | Run reliably | Work securely |
-| --- | --- | --- |
-| Drag nodes onto a pannable canvas; connect branches and merges. | Publish immutable versions and keep each execution tied to its original definition. | Sign in with Argon2id passwords, rotating HttpOnly sessions, and CSRF protection. |
+| Build visually                                                                           | Run reliably                                                                        | Work securely                                                                                 |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Drag nodes onto a pannable canvas; connect branches and merges.                          | Publish immutable versions and keep each execution tied to its original definition. | Sign in with Argon2id passwords, rotating HttpOnly sessions, and CSRF protection.             |
 | Configure JSON schemas, conditions, mappings, variables, delays, HTTP requests, and SQL. | Use bounded retries, backoff, idempotency keys, cancellation, and durable recovery. | Encrypt connection credentials and runtime payloads with AES-GCM; redact inspectable results. |
-| Undo, redo, duplicate, copy, paste, import, export, and recover unsaved drafts. | Inspect node inputs, outputs, timings, attempts, errors, and branch decisions. | Restrict access by workspace, role, API-key scope, and approved integration hostname. |
-| Start from reusable templates or a blank workflow. | Trigger work manually, by API, signed webhook, or timezone-aware schedule. | Block private-network requests by default; verify TLS and parameterize SQL. |
+| Undo, redo, duplicate, copy, paste, import, export, and recover unsaved drafts.          | Inspect node inputs, outputs, timings, attempts, errors, and branch decisions.      | Restrict access by workspace, role, API-key scope, and approved integration hostname.         |
+| Start from reusable templates or a blank workflow.                                       | Trigger work manually, by API, signed webhook, or timezone-aware schedule.          | Block private-network requests by default; verify TLS and parameterize SQL.                   |
 
 ## A workspace for the whole workflow
 
@@ -184,15 +184,15 @@ External effects use **at-least-once delivery**. An interruption after an extern
 
 ## Explore the project
 
-| Area | Location |
-| --- | --- |
-| API, authentication, nodes, execution, durable services | [`oxybridge/`](oxybridge/) |
-| Visual workspace and editor state | [`web/src/`](web/src/) |
-| Database migrations | [`migrations/`](migrations/) |
-| Portable runtime | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml) |
-| Configuration reference | [`docs/configuration.md`](docs/configuration.md) |
-| Deployment, backups, recovery, upgrades | [`docs/operations.md`](docs/operations.md) |
-| Design decisions and execution semantics | [`docs/architecture.md`](docs/architecture.md) |
-| Tests and release evidence | [`tests/`](tests/), [`web/tests/`](web/tests/), [`docs/verification.md`](docs/verification.md) |
+| Area                                                    | Location                                                                                       |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| API, authentication, nodes, execution, durable services | [`oxybridge/`](oxybridge/)                                                                     |
+| Visual workspace and editor state                       | [`web/src/`](web/src/)                                                                         |
+| Database migrations                                     | [`migrations/`](migrations/)                                                                   |
+| Portable runtime                                        | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml)                                     |
+| Configuration reference                                 | [`docs/configuration.md`](docs/configuration.md)                                               |
+| Deployment, backups, recovery, upgrades                 | [`docs/operations.md`](docs/operations.md)                                                     |
+| Design decisions and execution semantics                | [`docs/architecture.md`](docs/architecture.md)                                                 |
+| Tests and release evidence                              | [`tests/`](tests/), [`web/tests/`](web/tests/), [`docs/verification.md`](docs/verification.md) |
 
-<p align="center">A FantoX product · Built for connections you can understand.</p>
+<p align="center">Crafted by FantoX · Built for connections you can understand.</p>

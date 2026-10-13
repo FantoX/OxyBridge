@@ -175,7 +175,7 @@ function Authentication({ onLogin }: { onLogin: (user: User) => void }) {
             Your workflows. Your control.
           </div>
         </div>
-        <span className="auth-footer">A FantoX product</span>
+        <span className="auth-footer">Crafted by FantoX</span>
       </section>
       <section className="auth-form-panel">
         <form className="auth-form" onSubmit={submit}>
