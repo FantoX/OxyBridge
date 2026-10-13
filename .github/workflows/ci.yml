@@ -1,0 +1,76 @@
+name: Validate OxyBridge
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18.4-alpine
+        env:
+          POSTGRES_PASSWORD: oxybridge-ci
+          POSTGRES_DB: oxybridge_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U postgres -d oxybridge_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      APP_ENV: test
+      DATABASE_URL: postgresql+psycopg://postgres:oxybridge-ci@127.0.0.1:5432/oxybridge_test
+      TEST_DATABASE_URL: postgresql+psycopg://postgres:oxybridge-ci@127.0.0.1:5432/oxybridge_test
+      SECRET_KEY: ci-only-not-a-production-key-at-least-thirty-two-characters
+      ENCRYPTION_MASTER_KEY: eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHg=
+      CRON_SECRET: ci-cron-secret-not-for-production-only-tests
+      SETUP_TOKEN: ci-setup-token-not-for-production-only-tests
+      CORS_ALLOWED_ORIGINS: '["http://localhost:5174","http://127.0.0.1:5174"]'
+      E2E_EMAIL: owner@example.com
+      E2E_PASSWORD: CI-Disposable-Owner-123!
+      OXYBRIDGE_SEED_PASSWORD: CI-Disposable-Owner-123!
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: python -m pip install -r requirements-dev.txt
+      - run: npm ci --prefix web
+      - run: ruff check oxybridge tests scripts
+      - run: pytest
+      - run: npm run lint --prefix web
+      - run: npm test --prefix web
+      - run: npm run build --prefix web
+      - run: pip-audit -r requirements.txt --progress-spinner off
+      - run: npm audit --prefix web --audit-level=high
+      - name: Prepare browser checks on the disposable database
+        run: |
+          alembic upgrade head
+          python -m oxybridge.cli seed --email "$E2E_EMAIL"
+          python -m uvicorn oxybridge.api:app --host 127.0.0.1 --port 8000 > /tmp/oxybridge-api.log 2>&1 &
+          npm run dev --prefix web > /tmp/oxybridge-web.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8000/health/ready && curl --fail --silent http://localhost:5174/ > /dev/null; then break; fi
+            sleep 1
+          done
+      - run: npx playwright install --with-deps chromium firefox webkit
+        working-directory: web
+      - run: npm run e2e --prefix web
+      - name: Verify portable container configuration
+        run: |
+          cp .env.example .env
+          docker compose config --quiet
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: browser-evidence
+          path: |
+            docs/screenshots
+            web/test-results

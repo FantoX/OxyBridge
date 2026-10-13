@@ -1,0 +1,46 @@
+name: oxybridge
+
+x-runtime: &runtime
+  image: oxybridge:local
+  build: .
+  env_file: ${OXYBRIDGE_ENV_FILE:-.env}
+  restart: unless-stopped
+  read_only: true
+  tmpfs: [/tmp]
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+
+services:
+  migrate:
+    <<: *runtime
+    command: [python, -m, alembic, upgrade, head]
+    restart: "no"
+    healthcheck:
+      disable: true
+
+  app:
+    <<: *runtime
+    ports: ["127.0.0.1:${APP_PORT:-8000}:8000"]
+    environment:
+      PORT: "8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  dispatcher:
+    <<: *runtime
+    command: [python, -m, oxybridge.services, dispatcher]
+    healthcheck:
+      disable: true
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  scheduler:
+    <<: *runtime
+    command: [python, -m, oxybridge.services, scheduler]
+    healthcheck:
+      disable: true
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
