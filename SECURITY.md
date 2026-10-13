@@ -20,7 +20,7 @@ OxyBridge stores integration credentials, accepts webhook traffic, performs outb
 | API errors | Redacted error contracts and request IDs. Malformed/oversized request errors retain security headers and no-store caching. |
 | Browser content | CSP for served frontend/data routes, frame denial, nosniff, referrer and permissions policies; HSTS for secure-cookie deployments. Interactive API docs have a distinct policy because their UI loads external assets. |
 | Container | UID 10001, read-only application filesystem, dropped capabilities, no privilege escalation, no embedded configuration or private files, loopback host binding. |
-| Dependencies | Pinned runtime/frontend dependencies and vulnerability scans in CI. Update pinned requirements and lockfiles together, then rerun the checks. |
+| Dependencies | Pinned runtime/development/frontend dependencies and vulnerability scans in CI. The container uses the same patched installer as development. Update pinned requirements and lockfiles together, then rerun the checks. |
 
 ## Fixes from the October 13, 2026 review
 
@@ -34,6 +34,7 @@ OxyBridge stores integration credentials, accepts webhook traffic, performs outb
 - The portable image and Compose files apply non-root and runtime filesystem/capability restrictions.
 - Small-screen editor/search controls retain accessible names when their visible text is hidden.
 - Execution streams release authentication/read connections before streaming and perform snapshot reads off the API event loop to avoid blocking unrelated requests.
+- Release `0.1.1` upgrades the development and container installer to `pip 26.2.1` after public dependency scanning identified six advisories against the old development pin. CI now audits development requirements as well as runtime requirements. See the [changelog](CHANGELOG.md#011---2026-10-13).
 
 ## Operator responsibilities
 

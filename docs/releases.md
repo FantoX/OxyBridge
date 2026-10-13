@@ -2,11 +2,11 @@
 
 ## Version contract
 
-Application releases use `MAJOR.MINOR.PATCH` and annotated Git tags such as `v0.1.0`. The matching GitHub Release includes a changelog, source archives, SHA-256 checksums, setup links, and known limitations. See [Semantic Versioning](https://semver.org/) for the version format.
+Application releases use `MAJOR.MINOR.PATCH` and annotated Git tags such as `v0.1.1`. The matching GitHub Release includes a changelog, source archives, SHA-256 checksums, setup links, and known limitations. See [Semantic Versioning](https://semver.org/) for the version format.
 
 - Patch releases fix behavior without an intentional compatibility break.
 - Minor releases add features. While the application is `0.x`, minor releases can also change interfaces or configuration; review migration notes before upgrading.
-- A future `1.0.0` release will establish a production compatibility contract after its release gates are met. The current `0.1.0` release does not claim the full production V1 roadmap is certified.
+- A future `1.0.0` release will establish a production compatibility contract after its release gates are met. The current `0.1.1` release does not claim the full production V1 roadmap is certified.
 
 Published versions and tags are immutable. Fix a published release by creating a new version, not by moving its tag or replacing its source assets. Pre-release channels are not used for the initial release.
 
@@ -15,20 +15,20 @@ Application versions are separate from REST route prefixes such as `/api/v1`, im
 ## Install a specific release
 
 ```sh
-git clone --branch v0.1.0 --depth 1 https://github.com/FantoX/OxyBridge.git
+git clone --branch v0.1.1 --depth 1 https://github.com/FantoX/OxyBridge.git
 cd OxyBridge
 ```
 
 Alternatively, download a source archive from [Releases](https://github.com/FantoX/OxyBridge/releases), verify it against the attached `SHA256SUMS`, and extract it. Source archives include configuration examples, migrations, frontend/backend source, license files, and documentation. They exclude instance credentials, local state, installed dependencies, and database contents.
 
 ```powershell
-Get-FileHash .\OxyBridge-v0.1.0-source.zip -Algorithm SHA256
+Get-FileHash .\OxyBridge-v0.1.1-source.zip -Algorithm SHA256
 ```
 
 Then follow [README setup](../README.md#get-started). These are source distributions; dependencies and the production UI must be built. No container registry image or package registry publication is implied. Build an image from the tagged checkout when needed:
 
 ```sh
-docker build -t oxybridge:0.1.0 .
+docker build -t oxybridge:0.1.1 .
 ```
 
 ## Prepare the next release

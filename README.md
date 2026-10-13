@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/FantoX/OxyBridge/actions/workflows/ci.yml"><img src="https://github.com/FantoX/OxyBridge/actions/workflows/ci.yml/badge.svg" alt="Validation pipeline" /></a>
-  <a href="https://github.com/FantoX/OxyBridge/releases/tag/v0.1.0"><img src="https://img.shields.io/badge/version-0.1.0-6355df" alt="Version 0.1.0" /></a>
+  <a href="https://github.com/FantoX/OxyBridge/releases/tag/v0.1.1"><img src="https://img.shields.io/badge/version-0.1.1-6355df" alt="Version 0.1.1" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="Apache 2.0 license" /></a>
   <img src="https://img.shields.io/badge/Python-3.12-3776ab" alt="Python 3.12" />
   <img src="https://img.shields.io/badge/React-TypeScript-167789" alt="React and TypeScript" />
@@ -88,7 +88,7 @@ The database stores workflow definitions, execution history, and a transactional
 Clone the tagged release for a reproducible setup:
 
 ```sh
-git clone --branch v0.1.0 --depth 1 https://github.com/FantoX/OxyBridge.git
+git clone --branch v0.1.1 --depth 1 https://github.com/FantoX/OxyBridge.git
 cd OxyBridge
 ```
 
@@ -187,7 +187,7 @@ External effects use **at-least-once delivery**. An interruption after an extern
 
 ## Releases and community
 
-[Download v0.1.0](https://github.com/FantoX/OxyBridge/releases/tag/v0.1.0) with versioned source archives and SHA-256 checksums. Read the [changelog](CHANGELOG.md), [version and upgrade policy](docs/releases.md), and [contributor guide](CONTRIBUTING.md). Report reproducible bugs through [Issues](https://github.com/FantoX/OxyBridge/issues); use [private reporting](https://github.com/FantoX/OxyBridge/security/advisories/new) for sensitive security concerns.
+[Download v0.1.1](https://github.com/FantoX/OxyBridge/releases/tag/v0.1.1) with versioned source archives and SHA-256 checksums. Read the [changelog](CHANGELOG.md), [version and upgrade policy](docs/releases.md), and [contributor guide](CONTRIBUTING.md). Report reproducible bugs through [Issues](https://github.com/FantoX/OxyBridge/issues); use [private reporting](https://github.com/FantoX/OxyBridge/security/advisories/new) for sensitive security concerns.
 
 OxyBridge is licensed under [Apache 2.0](LICENSE). Attribution is recorded in [NOTICE](NOTICE); dependencies retain their [own licenses](THIRD_PARTY_NOTICES.md).
 

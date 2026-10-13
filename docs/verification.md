@@ -15,7 +15,7 @@ Review date: **October 13, 2026**. The supplied roadmap is a build specification
 | Portable runtime | Multi-stage image built on Linux; clean local PostgreSQL migrated to 0002; ASGI served the built frontend and API on one origin; repeated migrations passed. App/database readiness and continuous service startup verified. |
 | Hosted release | Readiness, authentication, frontend security headers, six concurrent execution snapshots, and two real Chromium edit/publish/run/inspect and management/mobile flows passed after the final application update. |
 | Continuous processing | `scripts/check_runtime.py` passed a signed webhook/replay check, a 12-second durable wait resumed without browser advancement, and a minute-level cron run completed through continuous services. Verification schedules were removed and workflows archived afterward. |
-| Dependencies | Runtime Python and frontend package scans found no known vulnerabilities at review time. This is time-bounded evidence, not a guarantee of future advisories. |
+| Dependencies | Runtime Python and frontend package scans found no known vulnerabilities at the application review. The publication scan subsequently identified six advisories in the development installer; release `0.1.1` pins the patched installer for development and container builds, and expands CI to audit development requirements. See the [changelog](../CHANGELOG.md#011---2026-10-13). Scans are time-bounded evidence, not a guarantee of future advisories. |
 | Security | Source review and regression tests are documented in [SECURITY.md](../SECURITY.md). Private configuration is excluded from Git and container context. |
 
 ## Requirement matrix

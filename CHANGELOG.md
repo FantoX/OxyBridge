@@ -6,6 +6,21 @@ Changes are recorded by released application version. Git tags use `vMAJOR.MINOR
 
 No unreleased changes are currently listed.
 
+## [0.1.1] - 2026-10-13
+
+### Security
+
+- Upgrade the pinned development installer and the container installer to `pip 26.2.1`. This resolves six published installer advisories: [GHSA-qwm4-qh6w-59xr](https://github.com/advisories/GHSA-qwm4-qh6w-59xr), [GHSA-wf93-45jw-7689](https://github.com/advisories/GHSA-wf93-45jw-7689), [GHSA-jp4c-xjxw-mgf9](https://github.com/advisories/GHSA-jp4c-xjxw-mgf9), [GHSA-58qw-9mgm-455v](https://github.com/advisories/GHSA-58qw-9mgm-455v), [GHSA-6vgw-5pg2-w6jp](https://github.com/advisories/GHSA-6vgw-5pg2-w6jp), and [GHSA-4xh5-x5gv-qwph](https://github.com/advisories/GHSA-4xh5-x5gv-qwph).
+- Extend CI's Python vulnerability scan to the complete development requirements, which also include the runtime requirements.
+
+### Distribution
+
+- Include the application license and attribution notices in the portable container, alongside the existing frontend dependency notices.
+
+### Upgrade
+
+Reinstall `requirements-dev.txt` for local development, or rebuild the container from this tag. Preserve the instance environment and encryption keys. This patch has no database migrations, workflow format changes, or runtime dependency changes.
+
 ## [0.1.0] - 2026-10-13
 
 Initial public release of the lightweight workflow automation core.
@@ -36,5 +51,6 @@ The application baseline passed 78 backend tests, 5 frontend state tests, and 24
 
 This is a source release of an early `0.x` application. External actions are delivered at least once. Sustained production SLOs, independent penetration testing, HA failover, and the full production V1 roadmap are not certified.
 
-[Unreleased]: https://github.com/FantoX/OxyBridge/compare/v0.1.0...main
+[Unreleased]: https://github.com/FantoX/OxyBridge/compare/v0.1.1...main
+[0.1.1]: https://github.com/FantoX/OxyBridge/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/FantoX/OxyBridge/releases/tag/v0.1.0
