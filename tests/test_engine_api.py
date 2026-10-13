@@ -443,3 +443,38 @@ def test_cron_requires_secret_and_health_is_process_only(client):
         == 200
     )
     assert client.get("/health/live").json()["status"] == "alive"
+
+
+def test_execution_stream_releases_connections_and_reads_off_event_loop(client, owner, monkeypatch):
+    import asyncio
+    import importlib
+    import json
+    import threading
+    from types import SimpleNamespace
+
+    api_module = importlib.import_module("oxybridge.api")
+    result = run(client, publish(client, graph("manual")))
+    original_view = api_module.run_view
+    event_loop_thread = threading.get_ident()
+
+    def checked_view(*args):
+        assert threading.get_ident() != event_loop_thread
+        return original_view(*args)
+
+    monkeypatch.setattr(api_module, "run_view", checked_view)
+    with Session() as db:
+        response = api_module.events(
+            result["id"],
+            p=SimpleNamespace(workspace=SimpleNamespace(id=owner["workspace_id"])),
+            db=db,
+        )
+        assert api_module.engine.pool.checkedout() == 0
+
+        async def consume():
+            snapshot = await anext(response.body_iterator)
+            assert api_module.engine.pool.checkedout() == 0
+            assert json.loads(snapshot.split("data: ", 1)[1])["id"] == result["id"]
+            with pytest.raises(StopAsyncIteration):
+                await anext(response.body_iterator)
+
+        asyncio.run(consume())

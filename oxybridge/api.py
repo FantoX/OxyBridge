@@ -1,4 +1,3 @@
-import asyncio
 import json
 import secrets
 import smtplib
@@ -1398,26 +1397,28 @@ def rerun(
 @app.get("/api/v1/workflow-runs/{run_id}/events/stream")
 def events(
     run_id: str,
-    request: Request,
     p=Depends(require(scope="runs:read")),
     db: Session = Depends(get_db),
 ):
     scoped(db, Run, run_id, p)
+    db.close()
 
-    async def stream():
+    def stream():
         previous, deadline = "", time.monotonic() + 25
-        while time.monotonic() < deadline and not await request.is_disconnected():
+        while time.monotonic() < deadline:
             with DBSession() as current:
                 run = current.get(Run, run_id)
                 data = json.dumps(jsonable_encoder(run_view(current, run, True)))
-                if data != previous:
-                    yield f"event: snapshot\ndata: {data}\n\n"
-                    previous = data
-                else:
-                    yield ": heartbeat\n\n"
-                if run.status in TERMINAL:
-                    break
-            await asyncio.sleep(1)
+                finished = run.status in TERMINAL
+            # StreamingResponse runs synchronous iteration off the event loop; release DB before yield.
+            if data != previous:
+                yield f"event: snapshot\ndata: {data}\n\n"
+                previous = data
+            else:
+                yield ": heartbeat\n\n"
+            if finished:
+                break
+            time.sleep(1)
 
     return StreamingResponse(
         stream(),
