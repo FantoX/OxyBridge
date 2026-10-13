@@ -2615,8 +2615,17 @@ tbody tr:hover {
   align-items: center;
   gap: 7px;
 }
+.execution-detail .page-heading {
+  flex-wrap: wrap;
+}
+.execution-detail .page-heading > div:first-child {
+  min-width: 0;
+  max-width: 100%;
+}
 .execution-detail .page-heading h1 {
   display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
   align-items: center;
   gap: 13px;
   font-size: 26px;
@@ -3560,7 +3569,7 @@ tbody tr:hover {
     min-height: 72px;
   }
   .execution-detail-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .run-summary {
     grid-template-columns: repeat(3, 1fr);
