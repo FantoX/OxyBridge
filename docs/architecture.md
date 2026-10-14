@@ -60,4 +60,4 @@ The container runs as UID 10001. Compose drops capabilities, disables privilege 
 
 PostgreSQL pooling is bounded per process and configurable. Multiple API/dispatcher processes coordinate through database locks, but this release has not established a horizontal scaling or availability SLO. Cold starts, connection limits, downstream latency, and scheduler availability still affect completion time.
 
-OAuth/SSO, an object store for oversized payloads, collaborative editing, a connector marketplace, and a distributed worker autoscaler are future extensions. The original infrastructure-heavy roadmap was adapted to the requested lightweight runtime; [verification](verification.md) records that distinction.
+OAuth/SSO, an object store for oversized payloads, collaborative editing, a connector marketplace, and a distributed worker autoscaler are future extensions. The current runtime uses PostgreSQL-backed durable state and standard ASGI/container deployment. See [compatibility and verification](verification.md) for supported behavior and operating limits.

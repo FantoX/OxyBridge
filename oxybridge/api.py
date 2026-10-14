@@ -74,7 +74,7 @@ async def lifespan(app):
     engine.dispose()
 
 
-app = FastAPI(title="OxyBridge", version="0.1.1", lifespan=lifespan)
+app = FastAPI(title="OxyBridge", version="0.1.2", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings().cors_allowed_origins,
@@ -1178,7 +1178,7 @@ def templates(p=Depends(require())):
 @app.get("/api/v1/system/info")
 def system_info(p=Depends(require())):
     return {
-        "version": "0.1.1",
+        "version": "0.1.2",
         "runtime": "ASGI",
         "database": "PostgreSQL",
         "queue": "PostgreSQL durable outbox",
@@ -1205,7 +1205,7 @@ def tick(request: Request):
 
 @app.get("/health/live")
 def live():
-    return {"status": "alive", "version": "0.1.1"}
+    return {"status": "alive", "version": "0.1.2"}
 
 
 @app.get("/health/ready")

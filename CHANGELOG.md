@@ -6,6 +6,18 @@ Changes are recorded by released application version. Git tags use `vMAJOR.MINOR
 
 No unreleased changes are currently listed.
 
+## [0.1.2] - 2026-10-14
+
+### Documentation
+
+- Make the capability and compatibility reference self-contained, with clear feature availability, validation evidence, and operating limits.
+- Refresh product, architecture, and release guidance with consistent navigation and versioned setup examples.
+- Package the release with current user and contributor documentation.
+
+### Upgrade
+
+This is a documentation and release-metadata update. It adds no database migrations, workflow format changes, or dependency changes. Preserve instance configuration and encryption keys when deploying the tagged source or rebuilding the container.
+
 ## [0.1.1] - 2026-10-13
 
 ### Security
@@ -33,7 +45,7 @@ Initial public release of the lightweight workflow automation core.
 - Workspace roles, scoped API keys, encrypted credentials and payloads, audit history, and retention controls.
 - Light/dark themes and responsive layouts verified from 320px to 1440px across Chromium, Firefox, and WebKit.
 - Portable ASGI and non-root Docker deployment, optional local PostgreSQL, continuous dispatcher/scheduler, configuration reference, and operations runbooks.
-- Product README, real application screenshots, API example, security review, and requirement verification matrix.
+- Product README, real application screenshots, API example, security review, and capability verification reference.
 - Apache 2.0 license, third-party notices, contributor guidance, issue templates, and release/version consistency checks.
 
 ### Fixed
@@ -47,10 +59,11 @@ Initial public release of the lightweight workflow automation core.
 
 ### Verification and limits
 
-The application baseline passed 78 backend tests, 5 frontend state tests, and 24 browser checks in Linux CI. Another 24 browser checks passed against the production UI served by the Linux container, and two hosted browser flows passed after deployment repair. See [verification](docs/verification.md) for evidence and remaining roadmap work.
+The application baseline passed 78 backend tests, 5 frontend state tests, and 24 browser checks in Linux CI. Another 24 browser checks passed against the production UI served by the Linux container, and two hosted browser flows passed after deployment repair. See [verification](docs/verification.md) for evidence and operating limits.
 
-This is a source release of an early `0.x` application. External actions are delivered at least once. Sustained production SLOs, independent penetration testing, HA failover, and the full production V1 roadmap are not certified.
+This is a source release of an early `0.x` application. External actions are delivered at least once. Sustained production SLOs, independent penetration testing, HA failover, and production compatibility certification remain outstanding.
 
-[Unreleased]: https://github.com/FantoX/OxyBridge/compare/v0.1.1...main
+[Unreleased]: https://github.com/FantoX/OxyBridge/compare/v0.1.2...main
+[0.1.2]: https://github.com/FantoX/OxyBridge/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/FantoX/OxyBridge/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/FantoX/OxyBridge/releases/tag/v0.1.0

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "oxybridge"
-version = "0.1.1"
+version = "0.1.2"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 description = "Self-hosted, durable workflow automation"
